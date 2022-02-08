@@ -1,5 +1,5 @@
-import EN from "./locales/en.json" assert { type: "json" };
-import DE from "./locales/de.json" assert { type: "json" };
+// import EN from "./locales/en.json" assert { type: "json" };
+// import DE from "./locales/de.json" assert { type: "json" };
 
 export function localeString(localeString) {
   // const locale  = "DE";
