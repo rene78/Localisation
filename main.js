@@ -1,4 +1,7 @@
 import { localeString } from './localeUtils.js';
 
-const country1 = await localeString("countries.DEU")
-document.querySelector("#country-1").innerText = country1;
+const deu = localeString("countries.DEU")
+document.querySelector("#deu").innerText = deu;
+
+const ita = localeString("countries.ITA")
+document.querySelector("#ita").innerText = ita;
