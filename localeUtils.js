@@ -8,7 +8,7 @@ async function loadLanguageFile(locale) {
   return languageFile;
 }
 
-export function localeString(localeString) {
+export async function localeString(localeString) {
   console.log(locale);
   return locale[localeString] || EN[localeString];
 }
