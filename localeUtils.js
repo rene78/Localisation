@@ -24,7 +24,29 @@ async function loadLanguageFile(locale) {
   return languageFile;
 }
 
-export function localeString(localeString) {
+//This function gets the translated string and all variables and returns the string with filled in vars.
+//Taken from https://github.com/stefalda/react-localization/blob/master/src/LocalizedStrings.js and simplified. Thanks Stefano!
+export function localeString(localeString, valuesForPlaceholders) {
   // console.log(locale);
-  return locale[localeString] || EN[localeString];//load translation. If empty string --> fall back to English
+  const translatedStringNoVarsFilledIn= locale[localeString] || EN[localeString];//load translation. If empty string --> fall back to English
+
+  const placeholderRegex = /(\{[\d|\w]+\})/;
+  const res = (translatedStringNoVarsFilledIn || '')
+    .split(placeholderRegex) //Split string into text parts at {}, e.g. ['You have selected ', '{number}', ' out of ', '{total}', ' values']
+    .filter(textPart => !!textPart) //Filter out empty strings in array of text parts
+    .map((textPart) => {
+      if (textPart.match(placeholderRegex)) { //Find words with { at beginning and } at the end
+        const matchedKey = textPart.slice(1, -1);//Remove { and }
+        const valueForPlaceholder = valuesForPlaceholders[matchedKey];
+        if (valueForPlaceholder !== undefined) {
+          return valueForPlaceholder;
+        } else {
+          // If value isn't found, then it must have been undefined/null
+          return undefined;
+        }
+        // return valueForPlaceholder;
+      }
+      return textPart;
+    });
+  return res.join('');
 }

@@ -1,4 +1,5 @@
 {
   "countries.DEU": "Germany",
-  "countries.ITA": "Italy"
+  "countries.ITA": "Italy",
+  "of": "You have selected {number} out of {total} values"
 }
